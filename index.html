@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello, world!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="styleshet" href="style.css">
+</head>
+<body>
+    <canvas id='canvas1' width="500" height="500" style='border:2px solid #110000;'></canvas><br>
+    <input id="canvasCircle" type="button" value="circle" onclick="circle();"/>
+    <input id="canvasSquare" type="button" value="square" onclick="square();"/>
+    <!--<p id="circlexcoor"></p>
+    <p id="circleycoor"></p>-->
+    <p id="shape"></p>
+    <hr>
+    <canvas id="canvas2" width="800" height="300" style='border:2px dashed #FF0000;'></canvas>
+    <input id="ani" type="button" value="Animate" onclick="animation();"/>
+    <br>
+    <hr>
+    <h3>Submit form background colour for canvas</h3>
+    <!--<input id="canvasColour" type="color" value="canvas background colour" onclick="colour();"/>-->
+    <hr>
+    <h3><input type="button" value="Reload page" onclick="window.location.reload();"></h3>
+    <hr>
+    <h3>Random numbers 1 - 10</h3>
+    <input id="random" type="button" value="Submit" onclick="rand();"/>
+    <p id="rand">value</p>
+    <hr>   
+    <h3>Random number max and min range</h3>
+    min (0-49):<input type="range" id="minim" value="25" name="minimum" min="0" max="49" step="1" oninput="this.nextElementSibling.value = this.value">
+    <output>25</output><br>
+    max (50-100):<input type="range" id="maxim" value="75" name="maximum" min="50" max="100" step="1" oninput="this.nextElementSibling.value = this.value">
+    <output>75</output><br>
+  <input id="submitid" type="button" value="Submit" onclick="submit();"/>
+  <span id="show">Generated a random number between <span id="min">this</span> and <span id="max">that</span>.</span>
+  <p id="range">value</p>
+<hr>
+  <!--To comment HTML--> 
+  <p id="test1">value</p>
+  <h3>Incr</h3>
+  <input id="incr" type="button" value="Incr++" onclick="incr();"/>
+  <h3>Decr</h3>
+  <input id="decr" type="button" value="Decr--" onclick="decr();"/>
+  <h3>Reset</h3>
+  <input id="reset" type="button" value="Reset" onclick="reset();"/>
+  <hr>
+  <h3>Call a function</h3>
+  <input id="fun" type="button" value="Change colour" onclick="funct();"/>
+  <p id="test2">substitute colour here</p>
+  <hr>
+  </h3>loop</h3>
+  <input id="loop5" type="button" value="1 To 5" onclick="loop();"/>
+  <p id="test3">To 5</p>
+  <hr>
+  <h3>A table</h3>
+  <table class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    
+  </table>
+  
+  <hr>
+  <h3>To start local server</h3>
+  <p>http-server</p>
+  <h3>To stop server local server</h3>
+  <p>ctrl+c</p>
+<hr>
+  <!--<form>
+  <button type="button" id="anonymousfunction">Submit</button>
+  </form>-->
+ <script>
+// To comment Javascript
+
+let i = 0;
+let j = 0;
+let k = 0;
+let l = 1;
+let min = 0;
+let max = 0;
+let int = 0;
+let shape = [];
+let colour = [];
+function generateRandomInteger(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
+const canvas = document.getElementById("canvas1");
+const ctx = canvas.getContext("2d"); 
+const canvas2 = document.getElementById("canvas2");
+const ctx2 = canvas2.getContext("2d"); 
+
+function animation(){
+  ctx2.beginPath();
+ctx2.fillStyle = "green";
+for(let m=0; m<360; m++){
+ctx2.arc(Math.sin(m)*(canvas2.width)/181000, canvas2.height/2, 10, 0, 2 * Math.PI);
+ctx2.fill();
+console.log(m);
+}
+}
+function submit(){
+     min = document.querySelector("#minim").value; 
+     max = document.querySelector("#maxim").value;
+     min = parseInt(min);
+     max = parseInt(max);
+    let int = generateRandomInteger(min,max);
+    document.getElementById("range").innerHTML = int;
+    document.getElementById("min").innerHTML = min;
+    document.getElementById("max").innerHTML = max;
+}
+
+function rand() {
+ let ran = generateRandomInteger(1,11);
+ document.getElementById("rand").innerHTML = ran;
+}
+
+function incr() {
+    // loop to increase i
+    document.getElementById("test1").innerHTML = i;
+    i++;
+}
+
+function decr() {
+    // loop to decrease i
+    document.getElementById("test1").innerHTML = i;
+    i--;
+}
+
+function reset() {
+    i = 0;
+    document.getElementById("test1").innerHTML = i;
+}
+
+function funct(){
+colour[0] = 'red';
+colour[1] = 'green';
+colour[2] = 'blue';
+colour[3] = 'purple';
+
+document.getElementById("test2").innerHTML = '<font color = \'' + colour[k] + '\'>' + colour[k];
+k++;
+if (k>2) {
+ k = 0;
+}
+else {
+//await click
+}
+}
+function loop(){ 
+    /* a for loop
+    for (let l = 0; l < 5; l++) {
+        //code
+    }
+    */
+    document.getElementById("test3").innerHTML = l;
+    console.log(l);
+    if (l<5){
+        l++;
+    } else {
+        l=1;//start again
+    }
+    }
+//while loop
+
+function circle() {
+  //generate coordinates
+  let r = 10;// radius of circle
+  let circlexcoor = generateRandomInteger(r,canvas.width-r);
+  let circleycoor = generateRandomInteger(r,canvas.height-r);
+  //document.getElementById("circlexcoor").innerHTML = circlexcoor;
+  //document.getElementById("circleycoor").innerHTML = circleycoor;
+  shape[0] = circlexcoor;
+  shape[1] = circleycoor;
+  shape[2] = r;//radius of circle
+  draw();
+}
+
+function square() {
+  //generate coordinates
+  let w = 30;// width of square 
+  let h = w;// height of square
+let squarexcoor = generateRandomInteger(1,canvas.width-w);
+let squareycoor = generateRandomInteger(1,canvas.height-h);
+shape[3] = squarexcoor;
+shape[4] = squareycoor;
+shape[5] = w;
+shape[6] = shape[5];
+draw();
+}
+
+function draw(){//called in the circle() and square() functions above.
+  document.getElementById("shape").innerHTML = 'shape = [circle x coordinate = ' + shape[0] + ', circle y coodinate = ' + shape[1] + ', circle radius =' + shape[2] + ', square x coordinate =' + shape[3] + ', square y coordinate = ' + shape[4] + ', square width = ' + shape[5] + ', square height = ' + shape[6] + ']';
+
+//Clear all
+  ctx.beginPath();
+ctx.fillStyle = "white";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+ctx.fill();
+ctx.closePath();
+
+//Draw red circle
+ctx.beginPath();
+ctx.fillStyle = "red";
+ctx.arc(shape[0], shape[1], shape[2], 0, 2 * Math.PI);
+ctx.fill();
+ctx.closePath();
+
+//Draw blue square
+ctx.beginPath();
+ctx.fillStyle = "blue";
+ctx.fillRect(shape[3],shape[4],shape[5],shape[6]);
+ctx.fill();
+ctx.closePath();
+}
+</script>
+</body>
+</html>
