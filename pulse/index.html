@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Javascript General</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <hr>
+  <canvas id='canvas3' width="500" height="250" style='border:2px double#00FFFF;'></canvas>ctx3<br>
+  <input id="pulsing" type="button" value="Animate pulsing" onclick="togglePause();"/>
+  <br>Background:<input type="color" id="bgpulse" value="bgpulse" name="bgpulse">
+
+  
+ 
+
+    <script>
+
+        const canvas5 = document.getElementById("canvas5");
+        const ctx5 = canvas5.getContext("2d");
+
+//Generate random numbers
+let min = 0;
+let max = 0;
+
+function generateRandomInteger(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
+
+
+
+const canvas3 = document.getElementById("canvas3");
+const ctx3 = canvas3.getContext("2d");
+let minRad = 10;
+let rangeRad = 20;
+let p = 0;
+
+let x = 200;
+let y = 200;
+let pulsePause = true;
+//pulse();
+
+function pulse(){
+  if(!pulsePause)
+  requestAnimationFrame(pulse);
+  let bgpulse = document.getElementById("bgpulse").value;
+  p=p+0.02;
+if(p>1){
+  p=0
+}
+const rad=minRad+rangeRad*p;
+
+ctx3.clearRect(0,0,canvas3.width,canvas3.height)
+ctx3.clearRect(0,0,innerWidth,innerHeight);
+ctx3.beginPath();
+ctx3.fillStyle = bgpulse;
+ctx3.rect(0, 0, innerWidth, innerHeight);
+ctx3.fill();
+ctx3.closePath();
+ctx3.beginPath();
+ctx3.arc(x,y,rad,0,Math.PI*2);
+ctx3.stroke();
+}
+
+canvas3.addEventListener("mousemove",function(info){
+x=info.offsetX;
+y=info.offsetY;
+});
+
+function togglePause() {
+  if (pulsePause)
+    {  pulsePause = false;
+	   requestAnimationFrame(pulse);
+	   document.getElementById("pulsing").value = "Pause pulsing";
+    }
+  else
+    {  pulsePause = true;
+	   document.getElementById("pulsing").value = "Animate pulsing";
+    }
+}
+    </script>
+</body>
+</html>
